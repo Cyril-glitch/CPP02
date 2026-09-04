@@ -6,7 +6,7 @@
 /*   By: cycolonn <cycolonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/04 21:57:50 by cycolonn          #+#    #+#             */
-/*   Updated: 2026/09/04 23:51:56 by cycolonn         ###   ########.fr       */
+/*   Updated: 2026/09/05 01:15:53 by cycolonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,21 @@ Fixed::Fixed(Fixed const & src)
     *this = src;
 }
 
+
+Fixed::Fixed(int const i) : _value(i << _fractionalBits) 
+{
+    std::cout << "Int constructor called" << std::endl;
+}
+
+Fixed::Fixed(float const f) : _value(roundf(f * (1  << _fractionalBits)))
+{
+    std::cout << "Float constructor called" << std::endl;
+}
+
 Fixed& Fixed::operator=(Fixed const & rhs)
 {
     std::cout << "Copy assignment operator called" << std::endl;
-    _value = rhs.getRawBits();
+    _value = rhs._value;
     return *this;
 }
 
@@ -42,6 +53,23 @@ void Fixed::setRawBits(int const raw)
     std::cout << "setRawBits member function called" << std::endl;
     _value = raw;
 }
+
+float Fixed::toFloat(void) const
+{
+    return (float)_value / (1 << _fractionalBits);
+}
+
+int Fixed::toInt(void) const
+{
+    return _value >> _fractionalBits;
+}
+
+std::ostream & operator<<(std::ostream &ofs, Fixed const & fpn)
+{
+    ofs << fpn.toFloat();
+    return ofs;
+}
+
 
 Fixed::~Fixed()
 {
