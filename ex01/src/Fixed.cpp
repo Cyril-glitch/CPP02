@@ -6,7 +6,7 @@
 /*   By: cycolonn <cycolonn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/04 21:57:50 by cycolonn          #+#    #+#             */
-/*   Updated: 2026/09/05 01:15:53 by cycolonn         ###   ########.fr       */
+/*   Updated: 2026/09/05 19:25:21 by cycolonn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ Fixed::Fixed(Fixed const & src)
     std::cout << "Copy constructor called" << std::endl;
     *this = src;
 }
-
 
 Fixed::Fixed(int const i) : _value(i << _fractionalBits) 
 {
@@ -69,7 +68,6 @@ std::ostream & operator<<(std::ostream &ofs, Fixed const & fpn)
     ofs << fpn.toFloat();
     return ofs;
 }
-
 
 Fixed::~Fixed()
 {
