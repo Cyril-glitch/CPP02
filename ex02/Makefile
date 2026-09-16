@@ -1,4 +1,4 @@
-NAME = bin/moreuseful
+NAME = bin/advanced_fixed
 
 CC = c++
 CFLAGS = -Wall -Wextra -Werror -std=c++98
@@ -27,10 +27,10 @@ $(OBJ_DIR)/%.o : %.cpp
 .PHONY: all clean fclean re
 
 it :	all
-	./bin/moreuseful
+	./bin/advanced_fixed
 
 val:	all
-	valgrind --leak-check=full --show-leak-kinds=all ./bin/moreuseful
+	valgrind --leak-check=full --show-leak-kinds=all ./bin/advenced_fixed
 
 clean :
 	rm -rf $(OBJ_DIR)
